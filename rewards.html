@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1B4D2E">
+  <title>Vegetalia — Your Rewards</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap&font-display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green-deep: #1B4D2E;
+      --green-mid: #2D6A4F;
+      --cream: #FDF6EC;
+      --cream-dark: #F5E6CC;
+      --red: #C0392B;
+      --red-hover: #A93226;
+      --gold: #C9A84C;
+      --charcoal: #2C2C2C;
+      --text-muted: #6B6B6B;
+      --white: #FFFFFF;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--charcoal);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(27, 77, 46, 0.97);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 0 1rem;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      width: 100%;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .nav-logo-img {
+      height: 52px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-order-nav {
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      padding: 8px 14px;
+      border-radius: 25px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s, transform 0.1s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-order-nav:active { transform: scale(0.97); background: var(--red-hover); }
+
+    /* ── MAIN CONTENT ── */
+    .page-wrap {
+      min-height: 100vh;
+      padding-top: 65px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 40px;
+    }
+
+    .reward-container {
+      width: 100%;
+      max-width: 420px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── HERO TEXT ── */
+    .reward-hero {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .reward-icon {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      display: block;
+      animation: bounceIn 0.6s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    @keyframes bounceIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .reward-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 6vw, 2rem);
+      font-weight: 700;
+      color: var(--green-deep);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .gold-line {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 10px auto 12px;
+    }
+
+    .reward-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    /* ── CARD ── */
+    .reward-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px 24px;
+      width: 100%;
+      box-shadow: 0 4px 32px rgba(27,77,46,0.10);
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .input-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .phone-input {
+      width: 100%;
+      padding: 15px 16px;
+      border: 2px solid #E8DDD0;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+      color: var(--charcoal);
+      background: var(--cream);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      letter-spacing: 2px;
+      text-align: center;
+      -webkit-appearance: none;
+    }
+
+    .phone-input:focus {
+      border-color: var(--green-deep);
+      background: var(--white);
+    }
+
+    .phone-input::placeholder {
+      color: #C5B8A8;
+      letter-spacing: 1px;
+      font-size: 0.95rem;
+    }
+
+    .action-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--green-deep);
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 14px;
+      transition: background 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .action-btn:active { transform: scale(0.98); }
+    .action-btn.loading { background: var(--green-mid); pointer-events: none; }
+    .action-btn.copy-mode { background: var(--gold); color: var(--green-deep); font-weight: 600; }
+    .action-btn.copy-mode:active { background: #b8952e; }
+    .action-btn.copied { background: #27ae60; }
+    .action-btn.order-mode { background: var(--red); color: var(--white); font-weight: 600; text-decoration: none; }
+    .action-btn.order-mode:active { background: var(--red-hover); }
+
+    /* ── SPINNER ── */
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+
+    .action-btn.loading .spinner { display: block; }
+    .action-btn.loading .btn-text { display: none; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── RESULT AREA ── */
+    .result-area {
+      margin-top: 16px;
+      border-radius: 12px;
+      padding: 0;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+
+    .result-area.show {
+      max-height: 200px;
+    }
+
+    .result-success {
+      background: #F0FBF4;
+      border: 1.5px solid rgba(27,77,46,0.2);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      display: none;
+    }
+
+    .result-success.show { display: block; }
+
+    .code-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .reward-code {
+      font-family: var(--font-body);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--green-deep);
+      letter-spacing: 6px;
+      margin-bottom: 6px;
+    }
+
+    .code-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .result-error {
+      background: #FFF5F5;
+      border: 1.5px solid rgba(192,57,43,0.2);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      display: none;
+    }
+
+    .result-error.show { display: block; }
+
+    .error-text {
+      font-size: 0.85rem;
+      color: var(--red);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .wa-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #25D366;
+      color: white;
+      padding: 9px 18px;
+      border-radius: 25px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .wa-link:active { background: #1da851; }
+
+    /* ── WHAT YOU GET section ── */
+    .reward-info {
+      margin-top: 20px;
+      background: var(--green-deep);
+      border-radius: 16px;
+      padding: 18px 20px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .reward-info-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: 0.3px;
+    }
+
+    .reward-info-desc {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+
+    .reward-info-highlight {
+      color: var(--white);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="/" class="nav-logo" aria-label="Vegetalia Home">
+      <img src="logo.png" alt="Vegetalia" class="nav-logo-img">
+    </a>
+    <div class="nav-right">
+      <a href="https://orders.vegetalia.in/vegetaliapizza/order" class="btn-order-nav" target="_blank">
+        🛵 Order Now
+      </a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="page-wrap">
+    <div class="reward-container">
+
+      <!-- Hero -->
+      <div class="reward-hero">
+        <span class="reward-icon">🎁</span>
+        <h1 class="reward-title">Your Vegetalia Reward</h1>
+        <div class="gold-line"></div>
+        <p class="reward-subtitle">Enter your phone number to reveal your reward coupon code.</p>
+      </div>
+
+      <!-- Card -->
+      <div class="reward-card">
+        <label class="input-label" for="phoneInput">Your phone number</label>
+        <input
+          type="tel"
+          id="phoneInput"
+          class="phone-input"
+          placeholder="Enter 10-digit number"
+          maxlength="10"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          autocomplete="tel-national"
+        />
+
+        <button class="action-btn" id="actionBtn" onclick="handleAction()">
+          <div class="spinner"></div>
+          <span class="btn-text">🎁 Get My Code</span>
+        </button>
+
+        <!-- Success result -->
+        <div class="result-success" id="resultSuccess">
+          <div class="code-label">Your reward code</div>
+          <div class="reward-code" id="rewardCode">RWD12</div>
+          <div class="code-hint">Use this code at checkout to claim your free item</div>
+        </div>
+
+        <!-- Error result -->
+        <div class="result-error" id="resultError">
+          <div class="error-text" id="errorText">No active reward found for this number.</div>
+          <a href="https://wa.me/919972720474?text=Hi%20Vegetalia!%20I%20tried%20to%20claim%20my%20reward%20but%20couldn%27t%20find%20it." class="wa-link" target="_blank">
+            💬 Contact Us
+          </a>
+        </div>
+      </div>
+
+      <!-- What you get info -->
+      <div class="reward-info">
+        <div class="reward-info-title">What's your reward?</div>
+        <div class="reward-info-desc">
+          A <span class="reward-info-highlight">FREE Cheese Garlic Bread worth ₹199</span> — apply your code at checkout on your next order.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const WORKER_URL = '';
+    let currentCode = null;
+    let codeCopied = false;
+
+    async function handleAction() {
+      const btn = document.getElementById('actionBtn');
+
+      // If in copy mode — copy to clipboard
+      if (btn.classList.contains('copy-mode')) {
+        if (currentCode) {
+          try {
+            await navigator.clipboard.writeText(currentCode);
+            btn.classList.remove('copy-mode');
+            btn.classList.add('copied');
+            btn.querySelector('.btn-text').textContent = '✓ Copied!';
+            setTimeout(() => {
+              btn.classList.remove('copied');
+              btn.classList.add('order-mode');
+              btn.querySelector('.btn-text').textContent = '🛵 Order Now';
+              btn.onclick = () => window.open('https://orders.vegetalia.in/vegetaliapizza/order', '_blank');
+            }, 2000);
+          } catch(e) {
+            // Fallback for older browsers
+            const el = document.createElement('textarea');
+            el.value = currentCode;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            btn.querySelector('.btn-text').textContent = '✓ Copied!';
+            setTimeout(() => {
+              btn.classList.remove('copy-mode');
+              btn.classList.add('order-mode');
+              btn.querySelector('.btn-text').textContent = '🛵 Order Now';
+              btn.onclick = () => window.open('https://orders.vegetalia.in/vegetaliapizza/order', '_blank');
+            }, 2000);
+          }
+        }
+        return;
+      }
+
+      // Otherwise — look up the code
+      const phone = document.getElementById('phoneInput').value.trim();
+
+      if (phone.length !== 10 || isNaN(phone)) {
+        showError('Please enter a valid 10-digit phone number.');
+        return;
+      }
+
+      // Loading state
+      btn.classList.add('loading');
+      hideResults();
+
+      try {
+        const res = await fetch(WORKER_URL + '/lookup?phone=' + phone);
+        const data = await res.json();
+
+        if (data.code) {
+          currentCode = data.code;
+          showSuccess(data.code);
+          // Switch button to copy mode
+          btn.classList.remove('loading');
+          btn.classList.add('copy-mode');
+          btn.querySelector('.btn-text').textContent = '📋 Copy Code';
+        } else {
+          btn.classList.remove('loading');
+          showError('No active reward found for this number.');
+        }
+      } catch(e) {
+        btn.classList.remove('loading');
+        showError('Something went wrong. Please try again.');
+      }
+    }
+
+    function showSuccess(code) {
+      document.getElementById('rewardCode').textContent = code;
+      document.getElementById('resultSuccess').classList.add('show');
+      document.getElementById('resultError').classList.remove('show');
+    }
+
+    function showError(msg) {
+      document.getElementById('errorText').textContent = msg;
+      document.getElementById('resultError').classList.add('show');
+      document.getElementById('resultSuccess').classList.remove('show');
+    }
+
+    function hideResults() {
+      document.getElementById('resultSuccess').classList.remove('show');
+      document.getElementById('resultError').classList.remove('show');
+    }
+
+    // Allow Enter key to trigger lookup
+    document.getElementById('phoneInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleAction();
+    });
+
+    // Reset button if phone number changes after lookup
+    document.getElementById('phoneInput').addEventListener('input', function() {
+      const btn = document.getElementById('actionBtn');
+      if (btn.classList.contains('copy-mode') || btn.classList.contains('copied')) {
+        btn.classList.remove('copy-mode', 'copied');
+        btn.querySelector('.btn-text').textContent = '🎁 Get My Code';
+        currentCode = null;
+        hideResults();
+      }
+    });
+  </script>
+
+</body>
+</html>
